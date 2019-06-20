@@ -1,0 +1,326 @@
+:root {
+  --app-dark-0: #000;
+  --app-dark-2: #222;
+  --app-dark-4: #444;
+  --app-dark-6: #666;
+  --app-dark-8: #888;
+  --app-dark-A: #AAA;
+  --app-dark-C: #CCC;
+  --app-dark-E: #EEE;
+
+  --ytp-red-0: #F00;
+
+  --background-color-primary: var(--app-dark-0);
+  --background-color-secondary: var(--app-dark-2);
+
+  --content-color-primary: var(--app-dark-E);
+  --content-color-secondary: var(--app-dark-A);
+
+  --golden-ratio: .618;
+  --progress-bar-height: .3rem;
+  --input-bar-height: .2rem;
+
+  --popup-width: 12rem;  
+  --popup-height: calc((1 + var(--golden-ratio)) * var(--popup-width));
+
+  --toolbar-width: var(--popup-width);
+  --toolbar-height: 1.2rem;
+
+  --button-length: var(--toolbar-height);
+
+  --header-width: var(--popup-width);
+  --header-height: calc(var(--popup-height) - var(--controls-height));
+
+  --controls-width: var(--popup-width);
+  --controls-height: calc(var(--golden-ratio) * var(--controls-width));
+}
+
+/* html-elements-style */
+body {
+  background-color: var(--background-color-primary);
+  color: var(--content-color-primary);
+  margin: 0;
+  width: var(--popup-width);
+  /* height: var(--popup-height); */
+}
+
+header,
+footer {  
+  position: absolute;
+  padding: 3px;
+  width: 100%;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 3px;
+  outline: none;
+
+  width: 100%;
+  height: var(--input-bar-height);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 5px;
+  border: none;
+
+  width: 10px;
+  height: 10px;
+}
+
+progress[value] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+progress[value]::-webkit-progress-bar {
+  background-color: var(--app-dark-8);
+  height: var(--progress-bar-height);
+}
+
+progress[value]::-webkit-progress-value {
+  background-color: var(--ytp-red-0);
+  height: var(--progress-bar-height);
+}
+
+select {
+  -webkit-appearance: button;
+  -moz-appearance: button;
+
+  appearance: button;
+  background: none transparent;
+  color: inherit;
+  font-size: inherit;
+  outline: none;
+  text-indent: 0.01px;
+  text-overflow: '';
+  vertical-align: middle;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #AAA;
+}
+
+svg {
+  fill: var(--content-color-primary);
+}
+
+/* common-style */
+.bgm-toolbar {
+  display: flex;
+  width: var(--toolbar-width);
+  height: var(--toolbar-height);
+  margin: 3px 0;
+
+  align-items: center;
+  justify-content: start;
+  overflow: hidden;
+}
+
+.bgm-btn {
+  display: inline-block;
+  overflow: hidden;
+  width: var(--button-length);
+  height: var(--button-length);
+  transition: opacity .1s cubic-bezier(0.4, 0.0, 1, 1);
+  margin: 1px;
+}
+
+.exclusive {
+  display: none;
+}
+
+/* header-style */
+.bgm-header {
+  font-size: .7rem;
+  text-overflow: clip;
+}
+
+.bgm-header-container {
+  background-color: transparent;
+  background-position-y: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  
+  width: var(--header-width);
+  height: var(--header-height);
+  padding: 3px 0;
+  position: relative;
+}
+
+.bgm-header-title {
+  animation: move 10s linear infinite;
+  white-space: nowrap;
+}
+
+.bgm-header-author {
+  color: var(--content-color-secondary);
+  white-space: nowrap;
+}
+
+@keyframes move {
+  30% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* main-style */
+.bgm-main-container {
+  background-color: var(--background-color-primary);
+  position: relative;
+  top: -2rem;
+}
+
+/* progress-toolbar-style */
+.bgm-progress-toolbar {
+  color: var(--content-color-secondary);
+  display: flex;
+  align-items: flex-end;
+  height: auto;
+  margin: 3px 0;
+}
+
+.bgm-progress-bar {
+  width: 100%;
+  height: 100%;
+}
+
+.bgm-progress-slider {
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+  top: -1px;
+  opacity: 0;
+}
+
+.bgm-progress-slider::-webkit-slider-thumb {
+  transform: translateX(-50%);
+}
+
+/* bgm-video-ctrl-style */
+.bgm-video-ctrl {
+  display: flex;
+}
+
+.bgm-video-ctrl[data-state="ENDED"] .bgm-video-replay,
+.bgm-video-ctrl[data-state="PLAYING"] .bgm-video-pause,
+.bgm-video-ctrl[data-state="PAUSED"] .bgm-video-play {
+  display: inline-block;
+}
+
+.bgm-video-ctrl[data-state="UNSTARTED"] .bgm-video-play,
+.bgm-video-ctrl[data-state="BUFFERING"] .bgm-video-play,
+.bgm-video-ctrl[data-state="CUED"] .bgm-video-play {
+  display: inline-block;
+  opacity: .5;
+}
+
+/* bgm-volume-ctrl-style */
+.bgm-volume {
+  display: inline-flex;
+}
+
+.bgm-volume[data-state="MUTE"] .bgm-volume-mute,
+.bgm-volume[data-state="OFF"] .bgm-volume-off,
+.bgm-volume[data-state="DOWN"] .bgm-volume-down,
+.bgm-volume[data-state="UP"] .bgm-volume-up {
+  display: inline-block;
+}
+
+.bgm-volume-slider-container {
+  background-color: var(--background-color-primary);
+  display: flex;
+  align-items: center;
+  margin: 0 3px;
+  height: var(--toolbar-height);
+}
+
+.bgm-volume-slider {
+  background-color: var(--content-color-primary);
+}
+
+.bgm-volume-slider::-webkit-slider-thumb {
+  background-color: var(--content-color-primary);
+}
+
+.bgm-volume .bgm-volume-slider-container {
+  opacity: 0;
+  width: 0px;
+  margin-right: inherit;
+  transition: opacity 1s, width 1s ease-in-out;
+}
+
+.bgm-volume:hover .bgm-volume-slider-container {
+  opacity: 1;
+  width: 100px;
+  margin-right: 36px;
+  transition: opacity 1s, width 1s ease-in-out;
+}
+
+.bgm-time-display {
+  color: var(--content-color-secondary);
+  font-size: .5rem;
+  margin: 0 3px 0 auto;
+}
+
+.bgm-search-box {
+  background-color: var(--background-color-secondary);
+  border: none;
+  border-radius: 3px;
+  color: var(--content-color-primary);
+  margin: 0 3px;
+}
+
+.bgm-search-result img {
+  width: 100%;
+}
+
+.bgm-search-result > :first-child {
+  display: block;
+}
+
+.bgm-search-result > :not(:first-child) {
+  display: none;
+}
+
+/* bgm-footer */
+.playlist-loop-btn[data-state="false"],
+.playlist-shuffle-btn[data-state="false"] {
+  opacity: .5;
+}
+
+.bgm-footer-container {
+  background-color: var(--background-color-primary);
+  bottom: 0;
+}
+
+.bgm-playlist-select-container {
+  display: flex;
+  align-items: center;
+  width: 64px;
+  height: 100%;
+  margin: 0 3px;
+}
+
+.bgm-playlist-select {
+  background-color: var(--background-color-secondary);
+  border: none;
+  border-radius: 3px;
+  color: var(--app-dark-A);
+  font-size: .5rem;
+  width: 100%;
+  height: 100%;
+}

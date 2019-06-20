@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<meta charset="utf-8">
+<title>BGM</title>
+<link rel="stylesheet" href="style.css">
+
+<header class="bgm-header-container" id="bgmHeader">
+  <div class="bgm-header-title bgm-header" id="bgmHeaderTitle">Loading...</div>
+  <div class="bgm-header-author bgm-header" id="bgmHeaderAuthor"></div>
+</header>
+
+<main class="bgm-main-container">
+ 
+  <div class="bgm-progress-toolbar bgm-toolbar">
+    <progress class="bgm-progress-bar" id="bgmProgressBar" value="0"></progress>
+    <input class="bgm-progress-slider" id="bgmProgressSlider" type="range" value="0">
+  </div>
+ 
+  <div class="bgm-video-toolbar bgm-toolbar">
+    <!-- column bgm-video-ctrl -->
+    <div class="bgm-video-ctrl bgm-toolbar-content" data-state="UNSTARTED" id="bgmVideoState">
+      <svg class="bgm-video-prev bgm-btn" id="bgmVideoPrev">
+        <use href="icons.svg#video_prev"></use>
+      </svg>
+      <svg class="bgm-video-playback bgm-btn">
+        <use class="bgm-video-play exclusive" href="icons.svg#video_play" id="bgmVideoPlay"></use>
+        <use class="bgm-video-pause exclusive" href="icons.svg#video_pause" id="bgmVideoPause"></use>
+        <use class="bgm-video-replay exclusive" href="icons.svg#video_replay" id="bgmVideoReplay"></use>
+      </svg>
+      <svg class="bgm-video-next bgm-btn" id="bgmVideoNext">
+        <use href="icons.svg#video_next"></use>
+      </svg>
+    </div>    
+    <!-- column bgm-volume -->
+    <div class="bgm-volume bgm-toolbar-content" id="bgmVolume" data-state="UP">
+      <svg class="bgm-volume-icon bgm-btn" id="bgmVolumeIcon">
+        <use class="bgm-volume-mute exclusive" href="icons.svg#volume_mute"></use>
+        <use class="bgm-volume-off exclusive" href="icons.svg#volume_off"></use>
+        <use class="bgm-volume-down exclusive" href="icons.svg#volume_down"></use>
+        <use class="bgm-volume-up exclusive" href="icons.svg#volume_up"></use>
+      </svg>
+      <div class="bgm-volume-slider-container">
+        <input class="bgm-volume-slider" id="bgmVolumeSlider" type="range" min="0" max="100" value="50">
+      </div>
+    </div>
+    <bgm-time-display class="bgm-time-display bgm-toolbar-content" id="bgmTimeDisplay"></bgm-time-display>
+  </div>
+
+  <div class="bgm-search-toolbar bgm-toolbar">
+    <input class="bgm-search-box" id="bgmSearchBox" placeholder="Search" type="text">
+    <svg class="bgm-search-result-prev bgm-btn" id="bgmSearchResultPrev">
+      <use href="icons.svg#result_prev"></use>
+    </svg>
+    <svg class="bgm-search-result-next bgm-btn" id="bgmSearchResultNext">
+      <use href="icons.svg#result_next"></use>
+    </svg>
+    <svg class="bgm-search-result-close bgm-btn" id="bgmSearchResultClose">
+      <use href="icons.svg#close"></use>
+    </svg>
+  </div>
+  
+  <bgm-search-result class="bgm-search-result" id="bgmSearchResult"></bgm-search-result>
+  <template id="bgmSearchResultCard">
+    <style>@import url("bgm-search-card.css");</style>
+    <article class="bgm-search-result-card">
+      <header class="bgm-search-result-header">
+        <slot name="title"></slot>
+        <slot name="channelTitle"></slot>
+      </header>
+      <main class="bgm-search-result-main">
+        <slot name="thumbnail"></slot>
+        <slot name="description"></slot>
+      </main>
+    </article>
+  </template>
+
+</main>
+
+<footer class="bgm-footer-container bgm-toolbar">
+  <svg class="debug-relaod-btn bgm-btn" id="debugReload">
+    <use href="icons.svg#app_reload"></use>
+  </svg>
+  <svg class="bgm-video-open-btn bgm-btn" id="bgmVideoOpenUrl">
+    <use href="icons.svg#video_open"></use>
+  </svg>
+  <svg class="bgm-playlist-open-btn bgm-btn" id="bgmPlaylistOpenUrl">
+    <use href="icons.svg#playlist_open"></use>
+  </svg>
+  <svg class="bgm-playlist-loop-btn bgm-btn" id="bgmPlaylistLoop" data-state="false">
+    <use href="icons.svg#playlist_repeat"></use>
+  </svg>
+  <svg class="bgm-playlist-shuffle-btn bgm-btn" id="bgmPlaylistShuffle" data-state="false">
+    <use href="icons.svg#playlist_shuffle"></use>
+  </svg>
+  <div class="bgm-playlist-select-container">
+    <select is="bgm-playlist-select" class="bgm-playlist-select" id="bgmPlaylistSelect">
+      <option>Playlists</option>  
+      <option value="PL0bHKk6wuUGLWGipKSf0dFrpuzDitERqD">Kizuna AI's songs</option>  
+      <option value="PL0IYpdlafdv0NE72ymuh58fK8CO7uCDz5">Rain</option>  
+    </select>
+  </div>
+</footer>
+
+<script src="custom_elements.js"></script>
+<script src="index.js"></script>

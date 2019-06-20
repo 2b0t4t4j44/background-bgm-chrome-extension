@@ -1,0 +1,20 @@
+.bgm-search-result-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 3px;
+  transition: 0.3s;
+}
+
+.bgm-search-result-header :first-child {
+  color: var(--content-color-primary); 
+  font-size: .7rem;
+}
+
+.bgm-search-result-header :nth-child(2) {
+  color: var(--content-color-secondary);
+  font-size: .5rem;
+}
+
+.bgm-search-result-main {
+  color: var(--content-color-secondary);
+  padding: 2px 16px;
+}

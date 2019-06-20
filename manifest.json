@@ -1,0 +1,21 @@
+{
+  "name": "Background BGM",
+  "manifest_version": 2,
+  "version": "1.0",
+  "description": "Play background music in Chrome background page.",
+  "icons": {
+    "36": "assets/playlist_1x.png",
+    "48": "assets/playlist_2x.png"
+  },
+  "background": {
+    "scripts": [
+      "background/index.js"
+    ],
+    "persistent": true
+  },
+  "browser_action": {
+    "default_title": "Background BGM",
+    "default_popup": "popup/index.html"
+  },
+  "content_security_policy": "script-src 'self' https://www.youtube.com https://s.ytimg.com; object-src 'self'; "
+}
